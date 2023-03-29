@@ -1,0 +1,11 @@
+@class("Animals")
+    name;
+
+    constructor(name) {
+        this.name = name;
+    }
+@endclass
+
+@makeclass(ref, Animals, "gato")
+
+{{ ref.name }}

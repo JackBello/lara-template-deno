@@ -1,0 +1,14 @@
+@code
+    const person = {
+        first_name: "tomas",
+        last_name: "bell",
+        age: 27,
+        birth_date: "2000/02/06"
+    };
+@endcode
+
+@with(person)
+    full name: {{ first_name }} {{ last_name }}
+    age: {{ age }}
+    birth_date {{ birth_date }}
+@endwith

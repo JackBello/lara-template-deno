@@ -1,0 +1,24 @@
+@code
+    const routes = [
+        {
+            "name": "home",
+            "path": "/"
+        },
+        {
+            "name": "shop",
+            "path": "/shop"
+        }
+    ];
+@endcode
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @include("examples.parts.head")
+</head>
+<body>
+    @include("examples.parts.navigation")
+    @include("examples.parts.section")
+    @include("examples.parts.aside")
+    @include("examples.parts.footer")
+</body>
+</html>

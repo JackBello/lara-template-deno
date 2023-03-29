@@ -1,0 +1,9 @@
+<nav>
+    <ul>
+        @for(const route of routes)
+            <li>
+                <a href="{{ route.path }}"> {{ route.name }}</a>
+            </li>
+        @endfor
+    </ul>
+</nav>

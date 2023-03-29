@@ -1,0 +1,21 @@
+print data variable
+{{ $information }}
+
+print shared variable
+{{ #description }}
+
+print scoped
+{{ pi }}
+{{ add(1,4) }}
+
+{{* this is a comment *}}
+
+{{**
+    this is a comment multiline
+**}}
+
+unescaped html
+{{< &lt;html&gt;hello&lt;/html&gt; >}}
+
+escaped html
+{{> <p>hello</p> <}}

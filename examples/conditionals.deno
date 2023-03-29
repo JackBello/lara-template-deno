@@ -1,0 +1,51 @@
+@code
+    const number = 1;
+    const auth = true;
+    const name = "john";
+    const month = "january"
+@endcode
+
+conditional "if"
+@if(number == 1)
+{{ number }}
+@endif
+
+conditional "if & else"
+@if(auth)
+is {{ auth }}
+@else
+is {{ auth }}
+@endif
+
+conditional "if & else if"
+@if(name == "john")
+my name is {{ name }}
+@elseif(name == "martha")
+my name is {{ name }}
+@endif
+
+conditional "if, else if & else"
+@if(month == "january")
+the month is {{ month }}
+@elseif(month == "february")
+the month is {{ month }}
+@else
+the month is {{ month }}
+@endif
+
+conditional ternary
+{{ number !== 5 ? true : false }}
+
+conditional switch
+@switch(number)
+    @case(1)
+        is one
+    @break
+
+    @case(2)
+        is two
+    @break
+
+    @default
+        is any number
+@endswitch

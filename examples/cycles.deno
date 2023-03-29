@@ -1,0 +1,72 @@
+@code
+    let indexWhile = 0;
+    let indexDoWhile = 0;
+
+    const routes = [
+        {
+            "name": "home",
+            "path": "/"
+        },
+        {
+            "name": "shop",
+            "path": "/shop"
+        },
+        {
+            "name": "login",
+            "path": "/login"
+        },
+        {
+            "name": "logout",
+            "path": "/logout"
+        }
+    ]
+@endcode
+
+cycle "for"
+@for(let i = 0; i < 10; i++)
+    for index: {{ i }}
+@endfor
+
+cycle "for"
+@for(const route of routes)
+    {{ _loop.remaining }}
+    </br>
+    {{ route.path }} - {{ route.name }}
+@endfor
+
+cycle "for into for"
+@for(let i = 1; i <= 10; i++)
+    @for(let j = 1; j <= 10; j++)
+        {{ i }} x {{ j }} = {{ i * j }}
+    @endfor
+@endfor
+
+cycle "while"
+@while(indexWhile < 10)
+    @code
+        indexWhile++;
+    @endcode
+
+    @if(indexWhile === 2)
+        @continue
+    @endif
+
+    while index: {{ indexWhile }}
+
+    @if(indexWhile === 8)
+        @break
+    @endif
+@endwhile
+
+cycle "do while"
+@dowhile
+    @code
+        indexDoWhile++;
+    @endcode
+
+    @continue(indexDoWhile === 2)
+
+    do while index: {{ indexDoWhile }}
+
+    @break(indexDoWhile === 8)
+@enddowhile(indexDoWhile < 10)
