@@ -1,7 +1,7 @@
 index.html
 index.js
-.vscode
-compiles
+
+/.vscode
 /node_modules
 
 /examples/other_directives.deno
