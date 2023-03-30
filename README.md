@@ -3,7 +3,7 @@ Lara Template Deno
 </h1>
 
 <p align="center">
-<a href="https://deno.land/x/lara_template_deno">lara deno template</a> is a template compiler inspired by the <a href="https://laravel.com/docs/10.x/blade" target="_blank">Blade Template</a> compiler of the <a href="https://laravel.com" target="_blank">Laravel Framework</a> for the <a href="https://deno.land" target="_blank">Deno</a> runtime environment.
+<a href="https://deno.land/x/lara_template_deno">Lara Template Deno</a> is a template compiler inspired by the <a href="https://laravel.com/docs/10.x/blade" target="_blank">Blade Template</a> compiler of the <a href="https://laravel.com" target="_blank">Laravel Framework</a> for the <a href="https://deno.land" target="_blank">Deno</a> runtime environment.
 </p>
 
 <p align="center">
@@ -81,26 +81,25 @@ What I am looking for with this tool is to facilitate the creation of templates 
 
 In order to use the lara template deno follow the following code as an example
 
+you can import the library using this form
+
 ```ts
-/**
- * you can import the library using this form
- */
+import { LaraDenoTemplate } from "https://deno.land/x/lara_template_deno/mod.ts";
+```
 
-import { LaraDenoTemplate } from "https://deno.land/x/lara_deno_template/mod.ts"
+or
 
-// or
-
-import * as laraDenoTemplate from "https://deno.land/x/lara_deno_template/mod.ts";
-
+```ts
+import * as laraDenoTemplate from "https://deno.land/x/lara_template_deno/mod.ts";
 ```
 
 ## Introduction
 
-You can use LaraTemplateDeno to render your templates simply. As in the following example
+Create in your project or folder an `index.ts` file and place the following code
 
 ```ts
 // imports the class LaraTemplateDeno
-import { LaraDenoTemplate } from "https://deno.land/x/lara_deno_template/mod.ts"
+import { LaraDenoTemplate } from "https://deno.land/x/lara_template_deno/mod.ts"
 
 // initializes the class
 const denoTemplate = new LaraDenoTemplate();
@@ -128,18 +127,23 @@ console.log(result)
  *  age 27
  */
 ```
+Then you execute the following command
+
+```bash
+deno run -A index.ts
+```
 
 ## Examples
-- [Basic](https://deno.land/x/lara_deno_template@v1.0.0/examples/basic.deno?source)
-- [Code](https://deno.land/x/lara_deno_template@v1.0.0/examples/code.deno?source)
-- [Cycles](https://deno.land/x/lara_deno_template@v1.0.0/examples/cycles.deno?source)
-- [Conditionals](https://deno.land/x/lara_deno_template@v1.0.0/examples/conditionals.deno?source)
-- [With](https://deno.land/x/lara_deno_template@v1.0.0/examples/with.deno?source)
-- [Functions](https://deno.land/x/lara_deno_template@v1.0.0/examples/functions.deno?source)
-- [Class](https://deno.land/x/lara_deno_template@v1.0.0/examples/class.deno?source)
-- [Import](https://deno.land/x/lara_deno_template@v1.0.0/examples/import.deno?source)
-- [Includes](https://deno.land/x/lara_deno_template@v1.0.0/examples/includes.deno?source)
-- [Custom Directives](https://deno.land/x/lara_deno_template@v1.0.0/examples/custom_directives.deno?source)
+- [Basic](https://deno.land/x/lara_template_deno@v1.0.0/examples/basic.deno?source)
+- [Code](https://deno.land/x/lara_template_deno@v1.0.0/examples/code.deno?source)
+- [Cycles](https://deno.land/x/lara_template_deno@v1.0.0/examples/cycles.deno?source)
+- [Conditionals](https://deno.land/x/lara_template_deno@v1.0.0/examples/conditionals.deno?source)
+- [With](https://deno.land/x/lara_template_deno@v1.0.0/examples/with.deno?source)
+- [Functions](https://deno.land/x/lara_template_deno@v1.0.0/examples/functions.deno?source)
+- [Class](https://deno.land/x/lara_template_deno@v1.0.0/examples/class.deno?source)
+- [Import](https://deno.land/x/lara_template_deno@v1.0.0/examples/import.deno?source)
+- [Includes](https://deno.land/x/lara_template_deno@v1.0.0/examples/includes.deno?source)
+- [Custom Directives](https://deno.land/x/lara_template_deno@v1.0.0/examples/custom_directives.deno?source)
 
 
 ## Used By
