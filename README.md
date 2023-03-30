@@ -52,6 +52,8 @@ Lara Template Deno
 
 # Overview
 
+What I am looking for with this tool is to facilitate the creation of templates quickly and efficiently, with the possibility for developers to add extra functionality through custom directives and adding functionality globally to the scoped.
+
 <hr />
 
 # Contents
@@ -90,11 +92,11 @@ In order to use the lara template deno follow the following code as an example
  * you can import the library using this form
  */
 
-import { LaraDenoTemplate } from "https://deno.land/x/lara_deno_template@v1.0.0/mod.ts"
+import { LaraDenoTemplate } from "https://deno.land/x/lara_deno_template/mod.ts"
 
 // or
 
-import * as laraDenoTemplate from "https://deno.land/x/lara_deno_template@v1.0.0/mod.ts";
+import * as laraDenoTemplate from "https://deno.land/x/lara_deno_template/mod.ts";
 
 ```
 
@@ -104,7 +106,7 @@ You can use LaraTemplateDeno to render your templates simply. As in the followin
 
 ```ts
 // imports the class LaraTemplateDeno
-import { LaraDenoTemplate } from "https://deno.land/x/lara_deno_template@v1.0.0/mod.ts"
+import { LaraDenoTemplate } from "https://deno.land/x/lara_deno_template/mod.ts"
 
 // initializes the class
 const denoTemplate = new LaraDenoTemplate();
@@ -124,6 +126,7 @@ const result = await denoTemplate.render(render, {
 
 // prints the result
 console.log(result)
+
 /**
  * Output
  *  personal information:
