@@ -54,8 +54,6 @@ Lara Template Deno
 
 What I am looking for with this tool is to facilitate the creation of templates quickly and efficiently, with the possibility for developers to add extra functionality through custom directives and adding functionality globally to the scoped.
 
-<hr />
-
 # Contents
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
@@ -65,8 +63,6 @@ What I am looking for with this tool is to facilitate the creation of templates 
 - [Feedback](#feedback)
 - [Contributing](#contributing)
 - [License](#license)
-
-<hr />
 
 ## Prerequisites
 
@@ -80,8 +76,6 @@ What I am looking for with this tool is to facilitate the creation of templates 
 - to install deno you need to follow the steps in the following link <a href="https://deno.land/manual@v1.32.1/getting_started/installation">Deno Install</a>.
 </details>
 
-
-<hr />
 
 ## Installation
 
@@ -147,7 +141,6 @@ console.log(result)
 - [Includes](https://deno.land/x/lara_deno_template@v1.0.0/examples/includes.deno?source)
 - [Custom Directives](https://deno.land/x/lara_deno_template@v1.0.0/examples/custom_directives.deno?source)
 
-<hr />
 
 ## Used By
 
