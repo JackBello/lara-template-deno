@@ -7,16 +7,159 @@ Lara Template Deno
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/github/license/JackBello/lara-template-deno?color=%2357d3af"/>
-    <img src="https://img.shields.io/github/issues-raw/JackBello/lara-template-deno?color=yellow"/>
-    <img src="https://img.shields.io/github/last-commit/JackBello/lara-template-deno?color=%2357d3af"/>
-    <img src="https://img.shields.io/github/stars/JackBello/lara-template-deno?logoColor=%2334495e&style=social"/>
+	<a href="https://github.com/JackBello/lara-template-deno/blob/master/LICENSE">
+		<img src="https://img.shields.io/github/license/JackBello/lara-template-deno?style=for-the-badge&logo=github" alt="License (MIT)" />
+	</a>
+	<a href="#installation">
+		<img src="https://img.shields.io/github/v/tag/JackBello/lara-template-deno?style=for-the-badge&logo=github" alt="Version" />
+	</a>
+	<a href="#">
+		<img alt="GitHub stars" src="https://img.shields.io/github/stars/JackBello/lara-template-deno?style=for-the-badge&logo=github" />
+	</a>
+	<a href="https://github.com/JackBello/lara-template-deno/issues?q=is%3Aissue+is%3Aclosed">
+		<img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed-raw/JackBello/lara-template-deno?style=for-the-badge&logo=github" />
+	</a>
+	<a href="https://github.com/JackBello/lara-template-deno/issues">
+		<img alt="GitHub open issues" src="https://img.shields.io/github/issues-raw/JackBello/lara-template-deno?style=for-the-badge&color=red&logo=github" />
+	</a>
+    <a href="https://github.com/JackBello/lara-template-deno/pulls?q=is%3Aopen+is%3Apr">
+        <img alt="GitHub Open Pull Request" src="https://img.shields.io/github/issues-pr-raw/JackBello/lara-template-deno?style=for-the-badge&logo=github">
+    </a>
+    <a href="https://github.com/JackBello/lara-template-deno/pulls?q=is%3Apr+is%3Aclosed">
+        <img src="https://img.shields.io/github/issues-pr-closed-raw/JackBello/lara-template-deno?style=for-the-badge&logo=github" alt="GitHub Closed Pull Request"/>
+    </a>
+    <a href="https://github.com/JackBello/lara-template-deno/commits/master">
+        <img src="https://img.shields.io/github/last-commit/JackBello/lara-template-deno?color=%2357d3af&style=for-the-badge&logo=github"alt="GitHub Commits"/>
+    </a>
 </p>
 
-## Features
+<p align="center">
 
-- Parser
+</p>
+
+# Features
+
+- Render
 - Compiler
 - Transpile
 - Minify
 - Formatter
+- Custom Directives
+- Global Scoped
+- Preload Code
+- Http Response
+- Temporal Data
+
+# Overview
+
+<hr />
+
+# Contents
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Introduction](#introduction)
+- [Examples](#examples)
+- [Used By](#used-by)
+- [Feedback](#feedback)
+- [Contributing](#contributing)
+- [License](#license)
+
+<hr />
+
+## Prerequisites
+
+> The following prerequisites are only necessary for the installation of Lara Template Deno
+
+- Deno@^1.32.1
+
+<details>
+  <summary>Prerequisites Installation (Click to show)</summary>
+
+- to install deno you need to follow the steps in the following link <a href="https://deno.land/manual@v1.32.1/getting_started/installation">Deno Install</a>.
+</details>
+
+
+<hr />
+
+## Installation
+
+In order to use the lara template deno follow the following code as an example
+
+```ts
+/**
+ * you can import the library using this form
+ */
+
+import { LaraDenoTemplate } from "https://deno.land/x/lara_deno_template@v1.0.0/mod.ts"
+
+// or
+
+import * as laraDenoTemplate from "https://deno.land/x/lara_deno_template@v1.0.0/mod.ts";
+
+```
+
+## Introduction
+
+You can use LaraTemplateDeno to render your templates simply. As in the following example
+
+```ts
+// imports the class LaraTemplateDeno
+import { LaraDenoTemplate } from "https://deno.land/x/lara_deno_template@v1.0.0/mod.ts"
+
+// initializes the class
+const denoTemplate = new LaraDenoTemplate();
+
+// creates a variable containing the text to render
+const render = `
+    personal information:
+    name {{ $name }}
+    age {{ $age }}
+`;
+
+// pass it the variable containing the text to be rendered and an object with the properties and methods to be interpreted in the template
+const result = await denoTemplate.render(render, {
+    name: "jack",
+    age: 27
+});
+
+// prints the result
+console.log(result)
+/**
+ * Output
+ *  personal information:
+ *  name jack
+ *  age 27
+ */
+```
+
+## Examples
+- [Basic](https://deno.land/x/lara_deno_template@v1.0.0/examples/basic.deno?source)
+- [Code](https://deno.land/x/lara_deno_template@v1.0.0/examples/code.deno?source)
+- [Cycles](https://deno.land/x/lara_deno_template@v1.0.0/examples/cycles.deno?source)
+- [Conditionals](https://deno.land/x/lara_deno_template@v1.0.0/examples/conditionals.deno?source)
+- [With](https://deno.land/x/lara_deno_template@v1.0.0/examples/with.deno?source)
+- [Functions](https://deno.land/x/lara_deno_template@v1.0.0/examples/functions.deno?source)
+- [Class](https://deno.land/x/lara_deno_template@v1.0.0/examples/class.deno?source)
+- [Import](https://deno.land/x/lara_deno_template@v1.0.0/examples/import.deno?source)
+- [Includes](https://deno.land/x/lara_deno_template@v1.0.0/examples/includes.deno?source)
+- [Custom Directives](https://deno.land/x/lara_deno_template@v1.0.0/examples/custom_directives.deno?source)
+
+<hr />
+
+## Used By
+
+This project is used by the following companies:
+
+> Fork the repository, append your company's name with the URL in above format inside the README.md file and make a PR! or create a GitHub issue mentioning (Site's name & domain).
+
+## Feedback
+
+Create an issue on github repo. and mention the details there.
+
+## Contributing
+
+All contributions are super welcomed!
+
+## License
+
+Lara Template Deno is provided under [MIT License](https://opensource.org/licenses/MIT)
