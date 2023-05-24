@@ -1,0 +1,13 @@
+<html>
+    <head>
+        <title>{{ $title }}</title>
+    </head>
+    <body>
+        <h1>{{ $heading }}</h1>
+        <ul>
+            @for(const item of $items);
+            <li>{{ item }}</li>
+            @endFor
+        </ul>
+    </body>
+</html>

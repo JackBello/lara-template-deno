@@ -1,50 +1,61 @@
-// deno-lint-ignore-file no-explicit-any
-export const varDump = (data: any, depth = 10): any => {
+/**
+ * 
+ * @param { any } data
+ * @param { number } depth 
+ * @returns { string }
+ */
+export const varDump = (data: any, depth = 10): string => {
     const seen = new Set();
 
-    const inspect = (obj: any, depth: number): any => {
+    /**
+     * 
+     * @param { any } object
+     * @param { number } depth 
+     * @returns { string }
+     */
+    const inspect = (object: any, depth: number): string => {
         if (depth === 0)
             return '...';
 
-        if (obj === null)
+        if (object === null)
             return 'null';
 
-        if (obj === undefined)
+        if (object === undefined)
             return 'undefined';
 
-        if (typeof obj === 'string')
-            return `"${obj}"`;
+        if (typeof object === 'string')
+            return `"${object}"`;
 
-        if (typeof obj === 'number' || typeof obj === 'boolean')
-            return obj.toString();
+        if (typeof object === 'number' || typeof object === 'boolean')
+            return object.toString();
 
-        if (typeof obj === 'function')
-            return `[Function: ${obj.name}]`;
+        if (typeof object === 'function')
+            return `[Function: ${object.name}]`;
 
-        if (Array.isArray(obj)) {
-            if (seen.has(obj))
+        if (Array.isArray(object)) {
+            if (seen.has(object))
                 return '[Circular]';
 
-            seen.add(obj);
+            seen.add(object);
 
-            const items = obj.map((item) => inspect(item, depth - 1));
+            const items = object.map((item) => inspect(item, depth - 1));
 
-            seen.delete(obj);
+            seen.delete(object);
 
             return `[${items.join(', ')}]`;
         }
 
-        if (typeof obj === 'object') {
-            if (seen.has(obj))
+        if (typeof object === 'object') {
+            if (seen.has(object))
                 return '[Circular]';
 
-            seen.add(obj);
+            seen.add(object);
 
-            const items = Object.entries(obj).map(([key, value]) => {
+            const items = Object.entries(object).map(([key, value]) => {
                 return `${key}: ${inspect(value, depth - 1)}`;
             });
 
-            seen.delete(obj);
+            seen.delete(object);
 
             return `{ ${items.join(', ')} }`;
         }
@@ -55,6 +66,6 @@ export const varDump = (data: any, depth = 10): any => {
     return inspect(data, depth)
 }
 
-export const isset = (accessor: any) => typeof accessor !== "undefined" && accessor !== null;
+export const isset = (accessor: any): boolean => typeof accessor !== "undefined" && accessor !== null;
 
-export const empty = (accessor: any) => typeof accessor === 'undefined' || accessor === null || accessor === '';
+export const empty = (accessor: any): boolean => typeof accessor === 'undefined' || accessor === null || accessor === '';

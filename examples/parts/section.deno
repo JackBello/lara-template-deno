@@ -1,3 +1,32 @@
-<section>
+@code
+    const auth = !true;
+@endCode
+
+<section
+    @classNames({
+        "flex flex-row justify-center": true,
+        "none": false
+    });
+    @styles({
+        'background-color: red': true,
+        'font-weight: bold': true
+    });
+>
     main content
+
+    <input
+        @attributes({
+            "id": {
+                value: "button_play",
+                active: true
+            },
+            "type": {
+                value: "button",
+                active: true
+            },
+            "readonly": {
+                active: auth
+            }
+        });
+    />
 </section>

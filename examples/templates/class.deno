@@ -1,11 +1,11 @@
-@class("Animals")
+@class("Animals");
     name;
 
     constructor(name) {
         this.name = name;
     }
-@endclass
+@endClass
 
-@makeclass(ref, Animals, "gato")
+@makeClass(ref, Animals, "gato");
 
 {{ ref.name }}

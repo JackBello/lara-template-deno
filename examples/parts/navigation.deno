@@ -1,9 +1,12 @@
 <nav>
     <ul>
-        @for(const route of routes)
+        @for(const route of routes);
             <li>
                 <a href="{{ route.path }}"> {{ route.name }}</a>
             </li>
-        @endfor
+        @endFor
+        <li>
+            <a href="/sum">{{ add(1,4) }}</a>
+        </li>
     </ul>
 </nav>

@@ -1,0 +1,51 @@
+@code("./examples/scripts/routes.js"); @code(let papa = "alvaro"); @code(let mama);
+
+@each(routes);
+    {@ "name: " + element.name + " path: " + element.path @}
+@endeach
+
+@table("10x10");
+
+@PI
+
+@test();
+
+@list(routes);
+
+@auth
+    is authenticated
+    {{ papa }}
+@endauth
+
+@auth
+    other authenticated
+    {{ 14 > 15 }}
+@endauth
+
+@env("APP_URL");
+    exist "APP_URL" in to env
+@endenv
+
+@env("DENO_ENVIRONMENT");
+    exist "DENO_ENVIRONMENT" in to env
+@endenv
+
+@production
+    is production
+@endproduction
+
+@development
+    is development
+@enddevelopment
+
+@isset(papa);
+    papa is defined
+@endisset
+
+@empty(mama);
+    mama is empty
+@endempty
+
+@unless(8 === 7);
+    not equal
+@endunless

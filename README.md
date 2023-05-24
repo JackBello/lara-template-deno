@@ -33,14 +33,11 @@ Lara Template Deno
     </a>
 </p>
 
-<p align="center">
-
-</p>
+<hr>
 
 # Features
 
 - Render
-- Compiler
 - Transpile
 - Minify
 - Formatter
@@ -49,6 +46,8 @@ Lara Template Deno
 - Preload Code
 - Http Response
 - Temporal Data
+- Support Typescript into templates
+- Components
 
 # Overview
 
@@ -58,7 +57,14 @@ What I am looking for with this tool is to facilitate the creation of templates 
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Introduction](#introduction)
+- [Displaying Data](#displaying-data)
+    - [Escape Html](#escape-html)
+    - [Unescape Html](#unescape-html)
+    - [Comments](#comments)
+    - [Temporal Data](#temporal-data)
 - [Examples](#examples)
+- [Benchmarks](#benchmarks)
+- [Testing](#testing)
 - [Used By](#used-by)
 - [Feedback](#feedback)
 - [Contributing](#contributing)
@@ -71,7 +77,7 @@ What I am looking for with this tool is to facilitate the creation of templates 
 - Deno@^1.32.1
 
 <details>
-  <summary>Prerequisites Installation (Click to show)</summary>
+  <summary style="cursor: pointer;">Prerequisites Installation (Click to show)</summary>
 
 - to install deno you need to follow the steps in the following link <a href="https://deno.land/manual@v1.32.1/getting_started/installation">Deno Install</a>.
 </details>
@@ -99,52 +105,274 @@ Create in your project or folder an `index.ts` file and place the following code
 
 ```ts
 // imports the class LaraTemplateDeno
-import { LaraDenoTemplate } from "https://deno.land/x/lara_template_deno/mod.ts"
+import { LaraDenoTemplate } from "https://deno.land/x/lara_template_deno/mod.ts";
 
 // initializes the class
 const denoTemplate = new LaraDenoTemplate();
 
 // creates a variable containing the text to render
-const render = `
-    personal information:
-    name {{ $name }}
-    age {{ $age }}
+const render = `<html>
+    <head>
+        <title>{{ $title }}</title>
+    </head>
+    <body>
+        <h1>{{ $heading }}</h1>
+        <ul>
+            @for(const item of $items);
+            <li>{{ item }}</li>
+            @endFor
+        </ul>
+    </body>
+</html>
 `;
 
 // pass it the variable containing the text to be rendered and an object with the properties and methods to be interpreted in the template
-const result = await denoTemplate.render(render, {
-    name: "jack",
-    age: 27
+const result = await denoTemplate.render({
+    text: render,
+    data: {
+        title: "Home",
+        heading: 'Alosaur',
+        items: ["js","css","html"]
+    }
 });
 
 // prints the result
-console.log(result)
-
-/**
- * Output
- *  personal information:
- *  name jack
- *  age 27
- */
+console.log(result);
 ```
+
 Then you execute the following command
 
 ```bash
 deno run -A index.ts
 ```
+This is the result
+```html
+<html>
+    <head>
+        <title>Home</title>
+    </head>
+    <body>
+        <h1>Alosaur</h1>
+        <ul>
+            <li>js</li>
+            <li>css</li>
+            <li>html</li>
+        </ul>
+    </body>
+</html>
+```
+## Displaying Data
+To display data in the template you only need to pass it an object with the data to be interpreted in the template.
+```ts
+import { LaraDenoTemplate } from "https://deno.land/x/lara_template_deno/mod.ts";
+
+const denoTemplate = new LaraDenoTemplate();
+
+const result = await denoTemplate.render({
+    text: `{{ $name }}`,
+    data: {
+        name: "jack"
+    }
+});
+
+// prints the result
+console.log(result);
+
+/**
+ * Output
+ * jack
+ */
+```
+to call the value to be interpreted in the template, it has to start with the symbol `$`. For example `{{ $name }}`
+
+### Escape Html
+You can escape your html using the following statement
+
+```ts
+import { LaraDenoTemplate } from "https://deno.land/x/lara_template_deno/mod.ts";
+
+const denoTemplate = new LaraDenoTemplate();
+
+const result = await denoTemplate.render({
+    text: `{> "<p>hello</p>" <}`
+});
+
+// prints the result
+console.log(result);
+
+/**
+ * Output
+ * &lt;p&gt;hello&lt;/p&gt;
+ */
+```
+When you use this expressions `{> ... <}` it escapes everything that's inside.
+
+Or you can enable HTML escaping in the LaraTemplateDeno configuration so that it is automatically applied to `{{ ... }}` expressions. With the following code.
+
+```ts
+import { LaraDenoTemplate } from "https://deno.land/x/lara_template_deno/mod.ts";
+
+const denoTemplate = new LaraDenoTemplate({
+    escapeHTML: true
+});
+
+const result = await denoTemplate.render({
+    text: `{{ "<p>hello</p>" }}`
+});
+
+// prints the result
+console.log(result);
+
+/**
+ * Output
+ * &lt;p&gt;hello&lt;/p&gt;
+ */
+```
+### Unescape Html
+You can also do the process in reverse
+```ts
+import { LaraDenoTemplate } from "https://deno.land/x/lara_template_deno/mod.ts";
+
+const denoTemplate = new LaraDenoTemplate();
+
+const result = await denoTemplate.render({
+    text: `{< "&lt;html&gt;hello&lt;/html&gt;" >}`
+});
+
+// prints the result
+console.log(result);
+
+/**
+ * Output
+ * <html>hello</html>
+ */
+```
+Using this expressions `{< ... >}` you can do the process in reverse.
+
+### Comments
+Sometimes we just want to leave comments to explain what our code does without affecting the rendering of the templates. 
+
+In the following example you can see how to add comments in the 
+
+```ts
+import { LaraDenoTemplate } from "https://deno.land/x/lara_template_deno/mod.ts";
+
+const denoTemplate = new LaraDenoTemplate();
+
+// we load our temporary data 
+denoTemplate.share({
+    id: 1455746
+});
+
+const result = await denoTemplate.render({
+    text: `{{ #id }} {* This is a comment *}`
+});
+
+// prints the result
+console.log(result);
+
+/**
+ * Output
+ * 1455746
+ */
+```
+Using this expression `{* ... *}` the renderer will ignore it in the final result
+
+### Temporal Data
+The temporal data is similar to when you pass the object to be interpreted in the template to the renderer. The difference is that the temporal data is preloaded before rendering the template. Once the template is rendered the temporary data is removed.
+
+The method we will use to load the temporary data is `share`.
+```ts
+import { LaraDenoTemplate } from "https://deno.land/x/lara_template_deno/mod.ts";
+
+const denoTemplate = new LaraDenoTemplate();
+
+// we load our temporary data 
+denoTemplate.share({
+    id: 1455746
+});
+
+const result = await denoTemplate.render({
+    text: `{{ #id }}`
+});
+
+// prints the result
+console.log(result);
+
+/**
+ * Output
+ * 1455746
+ */
+```
+
+<!-- ## Deno Template Directives
+
+## Render Templates
+
+## Compile Templates
+
+## Transpile Templates
+
+## Register Custom Directives
+
+## Register Scoped
+
+## Preload Code
+
+## Modifiers -->
 
 ## Examples
-- [Basic](https://deno.land/x/lara_template_deno@v1.0.0/examples/basic.deno?source)
-- [Code](https://deno.land/x/lara_template_deno@v1.0.0/examples/code.deno?source)
-- [Cycles](https://deno.land/x/lara_template_deno@v1.0.0/examples/cycles.deno?source)
-- [Conditionals](https://deno.land/x/lara_template_deno@v1.0.0/examples/conditionals.deno?source)
-- [With](https://deno.land/x/lara_template_deno@v1.0.0/examples/with.deno?source)
-- [Functions](https://deno.land/x/lara_template_deno@v1.0.0/examples/functions.deno?source)
-- [Class](https://deno.land/x/lara_template_deno@v1.0.0/examples/class.deno?source)
-- [Import](https://deno.land/x/lara_template_deno@v1.0.0/examples/import.deno?source)
-- [Includes](https://deno.land/x/lara_template_deno@v1.0.0/examples/includes.deno?source)
-- [Custom Directives](https://deno.land/x/lara_template_deno@v1.0.0/examples/custom_directives.deno?source)
+To test these examples you have to run the following command in your console
+```bash
+deno run -A https://deno.land/x/lara_template_deno@v1.0.0/examples/render.ts
+```
+this will render the first example "Basic.deno".
 
+But if you want to render each example you can use the --file flag passing the index of the example to render
+
+```bash
+deno run -A https://deno.land/x/lara_template_deno@v1.0.0/examples/render.ts --file=1
+```
+This will render the example "Code.deno"
+
+- [Basic](/examples/templates/basic.deno)
+- [Code](/examples/templates/code.deno)
+- [Cycles](/examples/templates/cycles.deno)
+- [Conditionals](/examples/templates/conditionals.deno)
+- [With](/examples/templates/with.deno)
+- [Functions](/examples/templates/functions.deno)
+- [Class](/examples/templates/class.deno)
+- [Import](/examples/templates/import.deno)
+- [Includes](/examples/templates/includes.deno)
+- [Custom Directives](/examples/templates/custom_directives.deno)
+- [Error](/examples/templates/error.deno)
+- [Inline](/examples/templates/inline.deno)
+- [Typescript](/examples/templates/typescript.deno)
+- [Components](/examples/templates/components.deno)
+- [Html](/examples/templates/html.deno)
+- [All](/examples/templates/all.deno)
+## Benchmarks
+performance testing with [Lara Deno Template](https://deno.land/x/lara_template_deno)
+![alt](/bench/lara/lara-bench.png)
+
+performance testing with [Handlebars](https://handlebarsjs.com/)
+![alt](/bench/handlebars/handlebars-bench.png)
+
+You can run the benchmarks on your console with the following command
+```bash
+deno bench -A https://deno.land/x/lara_template_deno@v1.0.0/bench/
+```
+You can also run the performance tests individually
+```bash
+deno bench -A https://deno.land/x/lara_template_deno@v1.0.0/bench/lara/bench.ts
+#OR
+deno bench -A https://deno.land/x/lara_template_deno@v1.0.0/bench/handlebars/bench.ts
+```
+## Testing
+You can run all the tests in your local with the following command
+```bash
+deno test -A https://deno.land/x/lara_template_deno@v1.0.0/tests/
+```
 
 ## Used By
 

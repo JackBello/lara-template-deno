@@ -4,8 +4,11 @@ index.js
 /.vscode
 /node_modules
 
-/examples/other_directives.deno
-/examples/components.deno
-
-/examples/components
+/examples/compiles
 /examples/transpiles
+/examples/compile.ts
+/examples/transpile.ts
+
+/src/compile.code.ts
+
+task.txt

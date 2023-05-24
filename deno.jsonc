@@ -1,0 +1,82 @@
+{
+    "tasks": {
+        "dev": "deno run -A --watch=./src,./examples mod.ts",
+
+        "all-tests": "deno test -A tests/",
+        "test-render": "deno test -A tests/render.test.ts",
+        "test-functions": "deno test -A tests/functions.test.ts",
+
+        "all-bench": "deno bench -A bench/",
+        "bench-lara": "deno bench -A bench/lara/bench.ts",
+        "bench-handlebars": "deno bench -A bench/handlebars/bench.ts",
+
+        "example": "deno run -A examples/render.ts",
+        "example-basic": "deno run -A examples/render.ts --file=0",
+        "example-code": "deno run -A examples/render.ts --file=1",
+        "example-cycles": "deno run -A examples/render.ts --file=2",
+        "example-conditionals": "deno run -A examples/render.ts --file=3",
+        "example-with": "deno run -A examples/render.ts --file=4",
+        "example-functions": "deno run -A examples/render.ts --file=5",
+        "example-import": "deno run -A examples/render.ts --file=6",
+        "example-includes": "deno run -A examples/render.ts --file=7",
+        "example-custom-directives": "deno run -A examples/render.ts --file=8",
+        "example-error": "deno run -A examples/render.ts --file=9",
+        "example-inline": "deno run -A examples/render.ts --file=10",
+        "example-typescript": "deno run -A examples/render.ts --file=11",
+        "example-components": "deno run -A examples/render.ts --file=12",
+        "example-all": "deno run -A examples/render.ts --file=14"
+    },
+    "lint": {
+        "include": [
+            "src/",
+            "examples/"
+        ],
+        "exclude": [
+            "bench/",
+            "tests"
+        ],
+        "rules": {
+            "exclude": [
+                "no-explicit-any",
+                "no-unused-vars",
+                "no-inferrable-types"
+            ]
+        }
+    },
+    "fmt": {
+        "useTabs": true,
+        "lineWidth": 80,
+        "indentWidth": 4,
+        "semiColons": false,
+        "singleQuote": true,
+        "proseWrap": "preserve",
+        "include": [
+            "src/",
+            "examples/"
+        ],
+        "exclude": [
+            "bench/",
+            "tests/"
+        ]
+    },
+    "test": {
+        "include": [
+            "tests/"
+        ],
+        "exclude": [
+            "src/",
+            "bench/",
+            "examples/"
+        ]
+    },
+    "bench": {
+        "include": [
+            "bench/"
+        ],
+        "exclude": [
+            "src/",
+            "tests/",
+            "examples/"
+        ]
+    }
+}

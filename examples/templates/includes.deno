@@ -1,0 +1,47 @@
+@code
+    const routes = [
+        {
+            "name": "home",
+            "path": "/"
+        },
+        {
+            "name": "shop",
+            "path": "/shop"
+        }
+    ];
+@endCode
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @include("examples.parts.head");
+</head>
+<body>
+    {{  }}
+    {{ }}
+    {{}}
+    @include("examples.parts.navigation");
+    @include("examples.parts.section");
+    @for(let i = 0; i < 10; i++);
+        <%Card
+            class="flex p-5"
+            :title="`Hello World ` + i"
+            body="fdfddfdff"
+            :languages="$languages"
+            :type="$type"
+        %>
+            New World
+        </%Card%>
+    @endFor
+    <%Card
+        class="flex p-5"
+        title="Hello World"
+        body="fdfddfdff"
+        :languages="$languages"
+        :type="$type"
+    %>
+        New World            
+    </%Card%>
+    @include("examples.parts.aside");
+    @include("examples.parts.footer");
+</body>
+</html>

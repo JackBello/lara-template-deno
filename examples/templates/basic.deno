@@ -1,0 +1,50 @@
+print data variable {{ $information }} {{ "<p>hello</p>" }} print shared variable {{ #description }}
+
+print scoped
+{{ pi }}
+{{ add(1,4) }}
+
+${{ 45 > 45 }}
+
+#{{ 45 == 45 }}
+
+{* this is a comment *}
+
+unescaped html
+{< "&lt;html&gt;hello&lt;/html&gt;" >}
+
+escaped html
+{> "<p>hello</p>" <}
+{> 1544 > 122 <}
+
+@if($(%hidden)$);
+    {{ $(%hidden)$ }}
+@endIf
+
+$information
+
+`${ 3 == 4 }`
+'mama'+'sss'
+"mama"+"papa"
+
+{{ 44 < 45 ? `this is a ${pi}` : `${add(1,6)}` }}
+
+@code
+const b = $(information)$
+
+const a = () => {
+
+}
+
+print($(information)$);
+
+print("hello" + " world");
+
+print('monday' + " jack");
+
+print(15 + 41);
+
+print(`this a sum ${add(1,6)}` + ` ${pi}`);
+
+// const a = [];
+@endCode

@@ -1,0 +1,29 @@
+@code("./examples/scripts/routes.js");
+
+@code("anonymous");
+    const PI = 3.1416;
+@endCode
+
+@code(const PLANCK = 6.626);
+
+@code
+    const PI = 3.1416;
+@endCode
+
+@code
+    print(PI);
+@endCode
+
+@code("anonymous");
+    const PI = 3.1416;
+@endCode
+
+@code("anonymous");
+    const PI = 3.1416;
+@endCode
+
+{{ PI }}
+
+{{ PLANCK }}
+
+{{ routes[0].path }}

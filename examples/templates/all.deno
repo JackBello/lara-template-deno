@@ -1,0 +1,121 @@
+@code
+const myUUID = crypto.randomUUID();
+
+const name = "jeni";
+const age = 18;
+const languages = ["typescript", "javascript", "css"];
+const color = "green";
+const info = {
+    name: "Deno",
+    version: Deno.version.deno,
+    typescript: Deno.version.typescript,
+    v9: Deno.version.v8,
+}
+let state = true;
+let index = 0;
+
+if (age < 18) state = false;
+
+const PI = 3.1416;
+
+function hello(message) {
+    return message;
+}
+@endCode
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Document</title>
+
+<style>
+    body {
+        background-color: {{ color }};
+    }
+</style>
+</head>
+<body>
+<br>
+
+{{ myUUID }}
+
+<br>
+
+{{ info.typescript }}
+
+<br>
+
+{{ hello('Hola mundo') }}
+
+<br>
+
+{{ Math.random() }}
+
+<br>
+
+{{ PI }}
+
+<br>
+
+@while(index < 10);
+    {{ index }}<br>
+    @code
+        index++
+    @endCode
+@endWhile
+
+@for(let i = 1; i <= 10; i++);
+    @for(let j = 1; j <= 10; j++);
+        <h1>{{ i }} x {{ j }} = {{ i * j }}</h1>
+    @endFor
+@endFor
+
+@if(name == "mark");
+    hello {{ name }}
+@elseIf($name == "jack");
+    hi! {{ name }}
+@elseIf($name == "david");
+    you are {{ name }}
+@else
+    not mark
+@endIf
+
+@if(languages.length > 0);
+    @for(const language of languages);
+        <h1>{{ language }}</h1>
+    @endFor
+@else
+    <h1>no languages</h1>
+@endIf
+
+{{ $name }}
+
+<br/>
+
+{{ state }}
+
+{{ age === 18 ? '<h1>I am 18</h1>' : '<h1>I am not 18</h1>' }}
+
+{{ 52 != 30 }}
+
+@code
+    const test = "papa";
+
+    print("a");
+@endCode
+
+{{ test }}
+
+    <%Card
+        class="flex p-5"
+        title="Minecraft"
+        body="fdfddfdff"
+        :languages="$languages"
+        :type="$type"
+    %>
+        New World            
+    </%Card%>
+</body>
+</html>

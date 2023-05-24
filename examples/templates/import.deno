@@ -1,0 +1,9 @@
+@import(uuid, "https://deno.land/std@0.154.0/uuid/v1.ts");
+
+@import({ generate }, "https://deno.land/std@0.154.0/uuid/v1.ts");
+
+@import("https://deno.land/std@0.154.0/uuid/v1.ts");
+
+{{ generate() }}
+
+{{ uuid.generate() }}

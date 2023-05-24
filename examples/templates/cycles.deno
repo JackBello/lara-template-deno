@@ -20,53 +20,53 @@
             "path": "/logout"
         }
     ]
-@endcode
+@endCode
 
 cycle "for"
-@for(let i = 0; i < 10; i++)
+@for(let i = 0; i < 10; i++);
     for index: {{ i }}
-@endfor
+@endFor
 
 cycle "for"
-@for(const route of routes)
+@for(const route of routes);
     {{ _loop.remaining }}
     </br>
     {{ route.path }} - {{ route.name }}
-@endfor
+@endFor
 
 cycle "for into for"
-@for(let i = 1; i <= 10; i++)
-    @for(let j = 1; j <= 10; j++)
+@for(let i = 1; i <= 10; i++);
+    @for(let j = 1; j <= 10; j++);
         {{ i }} x {{ j }} = {{ i * j }}
-    @endfor
-@endfor
+    @endFor
+@endFor
 
 cycle "while"
-@while(indexWhile < 10)
+@while(indexWhile < 10);
     @code
         indexWhile++;
-    @endcode
+    @endCode
 
-    @if(indexWhile === 2)
+    @if(indexWhile === 2);
         @continue
-    @endif
+    @endIf
 
     while index: {{ indexWhile }}
 
-    @if(indexWhile === 8)
+    @if(indexWhile === 8);
         @break
-    @endif
-@endwhile
+    @endIf
+@endWhile
 
 cycle "do while"
-@dowhile
+@do
     @code
         indexDoWhile++;
-    @endcode
+    @endCode
 
-    @continue(indexDoWhile === 2)
+    @continue(indexDoWhile === 2);
 
     do while index: {{ indexDoWhile }}
 
-    @break(indexDoWhile === 8)
-@enddowhile(indexDoWhile < 10)
+    @break(indexDoWhile === 8);
+@endWhile(indexDoWhile < 10);

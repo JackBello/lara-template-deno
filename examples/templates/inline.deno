@@ -1,0 +1,29 @@
+@if(true); {{ "a" }} {{ "b" }}
+    {{ "c" }}
+@endIf
+
+@if((true === true) && (false === false)); {{ "hello" }} {{ "mini" }} @endIf @if(true); {{ "world" }} @endIf @if(false); {{ "minecraft" }}
+
+@elseIf(false); {{ "mama" }} @else {{ "papa" }} @endIf
+
+@code let indexWhile = 0; let indexDoWhile = 0; const person = { first_name: "tomas", last_name: "bell", age: 27, birth_date: "2000/02/06" }; const number = 1; const routes = [{ "name": "home", "path": "/" }, { "name": "shop", "path": "/shop" }, { "name": "login", "path": "/login" }, { "name": "logout", "path": "/logout" } ] @endCode
+
+@with(person); full name: {{ first_name }} {{ last_name }} age: {{ age }} birth_date {{ birth_date }} @endWith @with(person); full name: {{ first_name }} {{ last_name }} age: {{ age }} birth_date {{ birth_date }} @endWith
+
+@switch(number); @case(1); is one @break @case(2); is two @break @default is any number @endSwitch
+
+@for(let i = 0; i < 10; i++);for index:{{ i }}@endFor
+
+@for(const route of routes); {{ _loop.remaining }} </br> {{ route.path }} - {{ route.name }} @endFor
+
+@for(let i = 1; i <= 10; i++); @for(let j = 1; j <= 10; j++); {{ i }} x {{ j }} = {{ i * j }} @endFor @endFor
+
+@while(indexWhile < 10); @code indexWhile++; @endCode @if(indexWhile === 2); @continue @endIf while index: {{ indexWhile }} @if(indexWhile === 8); @break @endIf @endWhile
+
+@while(indexWhile < 10); @code(indexWhile++); @continue(indexWhile === 2); {{ "index while " + indexWhile }} @break(indexWhile === 8); @endWhile
+
+@do @code(indexDoWhile++); do while index: {{ indexDoWhile }} @endWhile(indexDoWhile < 10);
+
+@import(uuid, "https://deno.land/std@0.154.0/uuid/v1.ts"); @import({ generate }, "https://deno.land/std@0.154.0/uuid/v1.ts"); @import("https://deno.land/std@0.154.0/uuid/v1.ts");
+
+{{ generate() }} {{ uuid.generate() }}
